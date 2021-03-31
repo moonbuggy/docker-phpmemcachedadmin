@@ -19,7 +19,7 @@ Configuration can be done via the web interface, at `http://<hostname or IP>:<po
 
 ### Persisting Data
 
-Configuration is stored at `/var/www/html/Config/Memcache.php`. You can mount a volume here if you wish to menually edit the configuration file.
+Configuration is stored at `/var/www/html/Config/Memcache.php`. You can mount a volume here if you wish to manually edit the configuration file.
 
 ## Links
 

@@ -2,4 +2,8 @@
 .dockerignore
 *.md
 Dockerfile*
-hooks/
+hooks
+build.sh
+build.conf
+.build_data
+

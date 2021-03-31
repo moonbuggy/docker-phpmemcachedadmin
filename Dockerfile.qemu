@@ -5,6 +5,13 @@ ARG PMCA_VERSION="1.3.0"
 
 ARG WEB_ROOT="/var/www/html"
 
+ARG QEMU_PREFIX="arm32v7"
+ARG QEMU_ARCH="arm"
+
+## get multi-arch static files
+#
+FROM "multiarch/qemu-user-static:x86_64-${QEMU_ARCH}" AS qemu
+
 ## get the files we need
 #
 FROM moonbuggy2000/fetcher:latest AS fetcher
@@ -19,6 +26,9 @@ RUN wget -qO- "https://github.com/elijaa/phpmemcachedadmin/archive/${PMCA_VERSIO
 ## build the final image
 #
 FROM "${FROM_IMAGE}"
+
+ARG QEMU_ARCH
+COPY --from=qemu "/usr/bin/qemu-${QEMU_ARCH}-static" /usr/bin
 
 ARG WEB_ROOT
 COPY --from=fetcher "${WEB_ROOT}" "${WEB_ROOT}"
